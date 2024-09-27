@@ -301,7 +301,7 @@ def get_image(conn: BlitzGateway, image_id: int,
                         axis_lengths[0], axis_lengths[1])
                 for zct in zct_list:
                     this_tile = pix.getTile(*zct, *tile)
-                    this_tile = np.frombuffer(this_tile, dtype=dtype)
+                    this_tile = np.frombuffer(this_tile, dtype=np.dtype(dtype).newbyteorder(">"))
                     this_tile = this_tile.reshape((tile[3], tile[2]))
                     plane_gen.append(this_tile)
 
